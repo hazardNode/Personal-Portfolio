@@ -43,7 +43,7 @@ export function useGSAP(
         contextRef.current = gsap.context(() => {
           // Call the animation callback with gsap and ScrollTrigger
           cleanup = callback(gsap, ScrollTrigger);
-        }, containerRef.current);
+        }, containerRef.current || undefined);
 
         // Refresh ScrollTrigger after animations are set up
         ScrollTrigger.refresh();
@@ -62,7 +62,7 @@ export function useGSAP(
 
           contextRef.current = gsap.context(() => {
             cleanup = callback(gsap, ScrollTrigger || {});
-          }, containerRef.current);
+          }, containerRef.current || undefined);
 
           if (ScrollTrigger) {
             ScrollTrigger.refresh();

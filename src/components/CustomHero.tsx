@@ -3,10 +3,10 @@
 import { useState, useEffect } from 'react';
 import { useGSAP } from '@/hooks/useGSAP';
 import {
-    ArrowRight, ArrowDown, Github, Linkedin, Mail, ExternalLink, Download,
-    Code, Palette, Shield, Brain, Menu, X, Calendar, Building, Award,
-    Phone, MapPin, Clock, Send, ChevronDown, Target, Trophy, Heart, Rocket,
-    Zap, Sparkles, Code2, Smartphone, Figma, Brush, Eye, Network, AlertTriangle,
+    ArrowRight, Github, Linkedin, Mail, ExternalLink,
+     Palette, Shield, Brain, Menu, X,  Award,
+    Phone, MapPin, Clock, Send, 
+    Code2, Smartphone, Figma, Brush, Eye, Network, AlertTriangle,
     Search, Cpu, BarChart3, Package, Cloud, Settings, Twitter, FileText
 } from 'lucide-react';
 
@@ -23,15 +23,15 @@ export default function CompleteMinimalistBrutalistPortfolio() {
             id: 'ecommerce-platform',
             title: 'E-commerce Platform',
             description: 'Modern e-commerce platform with advanced filtering and payment integration',
-            longDescription: 'A full-featured e-commerce platform built with Next.js, featuring real-time inventory management, advanced search and filtering, secure payment processing with Stripe, and an intuitive admin dashboard.',
-            technologies: ['Next.js', 'TypeScript', 'Stripe', 'Prisma', 'PostgreSQL', 'Tailwind CSS'],
-            category: 'Frontend',
+            longDescription: 'A full-featured e-commerce platform built with Django, Alpine.js, htmx and Tailwind.css, featuring real-time inventory management, secure payment processing with Stripe, and acustom and intuitive admin dashboard.',
+            technologies: ['Alpine.js', 'Django', 'Stripe', 'Python', 'PostgreSQL', 'Tailwind CSS'],
+            category: 'Full-Stack',
             featured: true,
-            liveUrl: 'https://ecommerce-demo.com',
-            githubUrl: 'https://github.com/username/ecommerce-platform',
-            year: '2024'
+            liveUrl: 'https://ddfarma.com',
+            githubUrl: 'https://github.com/hazardNode/Proyecto-Integrado',
+            year: '2025'
         },
-        {
+        /*{
             id: 'cybersec-dashboard',
             title: 'Cybersecurity Dashboard',
             description: 'Real-time security monitoring dashboard with threat visualization',
@@ -65,32 +65,30 @@ export default function CompleteMinimalistBrutalistPortfolio() {
             liveUrl: 'https://design-system-demo.com',
             githubUrl: 'https://github.com/username/design-system',
             year: '2023'
-        }
+        }*/
     ];
 
     const experience = [
         {
-            id: 'senior-frontend-dev',
-            company: 'TechCorp Solutions',
-            position: 'Senior Frontend Developer',
-            duration: '2023 - Present',
-            description: 'Leading frontend development initiatives and mentoring junior developers while building scalable web applications.',
+            id: 'fullstack-developer',
+            company: 'Softcom S.L.',
+            position: 'Full-Stack Developer',
+            duration: '2023 - 2025',
+            description: 'Internship focused on building and maintaining web applications using modern JavaScript frameworks and backend technologies.',
             responsibilities: [
-                'Led a team of 5 frontend developers in building complex web applications',
-                'Implemented modern React patterns and performance optimization strategies',
-                'Designed and built component library used across 10+ projects',
-                'Collaborated with UX designers to create exceptional user experiences',
-                'Mentored junior developers and conducted code reviews'
+                'Worked with legacy codebase to refactor and improve performance',
+                'Led complete overhaul of a website design to improve security and user experience',
+                'Developed new features for existing applications using PHP, .NET and Spring Boot',
             ],
-            technologies: ['React', 'Next.js', 'TypeScript', 'GSAP', 'Tailwind CSS', 'GraphQL'],
+            technologies: ['PHP', 'Spring', '.NET', 'React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Vue.js', 'PostgreSQL', 'MySQL', 'MongoDB', 'Git', 'AWS'],
             achievements: [
-                'Reduced bundle size by 30% across all applications',
-                'Improved Core Web Vitals scores by 40%',
-                'Implemented CI/CD pipeline reducing deployment time by 60%',
-                'Led migration from legacy codebase to modern React stack'
+                'Reduced a project\'s vulnerability score by 40% through security audits',
+                'Improved application load time by 30% through code splitting and lazy loading',
+                'Created a postfix email server with custom security protocols',
+                'Improve user experience and functionality of existing applications with Vue.js and Tailwind CSS'
             ]
         },
-        {
+        /*{
             id: 'frontend-developer',
             company: 'Digital Innovations Inc',
             position: 'Frontend Developer',
@@ -131,46 +129,11 @@ export default function CompleteMinimalistBrutalistPortfolio() {
                 'Developed automated security scanning tools',
                 'Achieved CISSP certification'
             ]
-        }
+        }*/
     ];
 
-    const skills = {
-        frontend: [
-            { name: 'React/Next.js', level: 95, icon: Code2 },
-            { name: 'TypeScript', level: 90, icon: Code2 },
-            { name: 'GSAP Animation', level: 85, icon: Smartphone },
-            { name: 'Three.js', level: 80, icon: Cpu },
-            { name: 'Tailwind CSS', level: 95, icon: Palette },
-            { name: 'Vue.js', level: 75, icon: Code2 }
-        ],
-        design: [
-            { name: 'Figma', level: 90, icon: Figma },
-            { name: 'UI/UX Design', level: 88, icon: Eye },
-            { name: 'Adobe Creative Suite', level: 85, icon: Brush },
-            { name: 'Prototyping', level: 82, icon: Smartphone }
-        ],
-        cybersecurity: [
-            { name: 'Penetration Testing', level: 85, icon: Search },
-            { name: 'Network Security', level: 80, icon: Network },
-            { name: 'OWASP', level: 88, icon: Shield },
-            { name: 'Security Auditing', level: 82, icon: AlertTriangle }
-        ],
-        ai: [
-            { name: 'Machine Learning', level: 75, icon: Brain },
-            { name: 'TensorFlow', level: 70, icon: Cpu },
-            { name: 'Python', level: 85, icon: Code2 },
-            { name: 'Data Analysis', level: 78, icon: BarChart3 }
-        ],
-        tools: [
-            { name: 'Git/GitHub', level: 95, icon: Github },
-            { name: 'Docker', level: 80, icon: Package },
-            { name: 'AWS', level: 85, icon: Cloud },
-            { name: 'Webpack', level: 75, icon: Settings }
-        ]
-    };
-
     const certifications = [
-        {
+        /*{
             id: 'aws-solutions-architect',
             name: 'AWS Certified Solutions Architect',
             issuer: 'Amazon Web Services',
@@ -201,19 +164,19 @@ export default function CompleteMinimalistBrutalistPortfolio() {
             date: '2023-03-05',
             description: 'Demonstrates proficiency in building ML models with TensorFlow',
             skills: ['Machine Learning', 'Neural Networks', 'Computer Vision', 'NLP']
-        },
+        },*/
         {
             id: 'ux-design',
-            name: 'Google UX Design Certificate',
+            name: 'Google IT Professional',
             issuer: 'Google',
-            date: '2022-07-18',
+            date: '2024-11-10',
             description: 'Comprehensive UX design methodology and user research techniques',
-            skills: ['User Research', 'Prototyping', 'Usability Testing', 'Design Thinking']
+            skills: ['IT Support', 'Cybersecurity', 'Networks', 'Systems Administration']
         }
     ];
 
     const socialLinks = [
-        { name: 'GitHub', url: 'https://github.com/yourusername', icon: Github },
+        { name: 'GitHub', url: 'https://github.com/hazardNode', icon: Github },
         { name: 'LinkedIn', url: 'https://linkedin.com/in/yourusername', icon: Linkedin },
         { name: 'Twitter', url: 'https://twitter.com/yourusername', icon: Twitter },
         { name: 'Email', url: 'mailto:francisco.duarry@example.com', icon: Mail },
@@ -500,7 +463,7 @@ export default function CompleteMinimalistBrutalistPortfolio() {
     );
 
     return (
-        <div ref={containerRef} style={styles.container}>
+        <div ref={containerRef as React.RefObject<HTMLDivElement>} style={styles.container}>
             <AnimatedSVG />
 
             {/* Navigation */}
@@ -588,7 +551,7 @@ export default function CompleteMinimalistBrutalistPortfolio() {
                         marginBottom: '2rem',
                         textTransform: 'uppercase'
                     }}>
-                        Full-Stack Developer • AI Engineer • Security Expert
+                        Full-Stack Developer
                     </p>
 
                     <p className="hero-description" style={{
@@ -598,9 +561,9 @@ export default function CompleteMinimalistBrutalistPortfolio() {
                         maxWidth: '600px',
                         marginBottom: '3rem'
                     }}>
-                        Crafting exceptional digital experiences through minimal design,
-                        clean code, and strategic thinking. Specialized in React, cybersecurity,
-                        and AI/ML integration.
+                        Crafting exceptional digital experiences through secure development,
+                        clean code, and strategic thinking. Specialized in Django, Vue.js,
+                        and AWS.
                     </p>
 
                     <button
@@ -627,8 +590,8 @@ export default function CompleteMinimalistBrutalistPortfolio() {
                         marginTop: '4rem'
                     }}>
                         {[
-                            { number: '05+', label: 'Years Experience' },
-                            { number: '50+', label: 'Projects Delivered' },
+                            { number: '02+', label: 'Years Experience' },
+                            { number: '10+', label: 'Projects Delivered' },
                             { number: '15+', label: 'Happy Clients' },
                             { number: '95%', label: 'Client Satisfaction' }
                         ].map((stat, index) => (
@@ -741,8 +704,7 @@ export default function CompleteMinimalistBrutalistPortfolio() {
                             color: '#666666',
                             marginBottom: '1.5rem'
                         }}>
-                            With over 5 years of experience spanning frontend development, cybersecurity,
-                            and AI/ML, I create digital solutions that bridge innovative design with
+                            With over 2 years of experience in fullstack development, I create digital solutions that bridge innovative design with
                             robust functionality. My interdisciplinary background allows me to approach
                             problems from multiple angles.
                         </p>
@@ -764,7 +726,7 @@ export default function CompleteMinimalistBrutalistPortfolio() {
                             marginBottom: '2rem',
                             color: '#1a1a1a'
                         }}>What I Do</h3>
-                        <div style={{ space: '1.5rem' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                             {[
                                 'Frontend Development',
                                 'UI/UX Design',
@@ -798,7 +760,7 @@ export default function CompleteMinimalistBrutalistPortfolio() {
                     <div style={styles.sectionAccent} />
                 </h2>
 
-                <div style={{ space: '3rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
                     {experience.map((exp, index) => (
                         <div key={exp.id} className="content-card" style={{
                             ...styles.card,
@@ -1157,7 +1119,7 @@ export default function CompleteMinimalistBrutalistPortfolio() {
                             },
                             {
                                 category: 'Databases & Storage',
-                                items: ['PostgreSQL', 'Redis', 'MongoDB', 'Supabase', 'GraphQL', 'REST APIs']
+                                items: ['PostgreSQL', 'Redis', 'MongoDB', 'MySQL', 'GraphQL', 'REST APIs']
                             },
                             {
                                 category: 'Security & AI',
@@ -1366,7 +1328,7 @@ export default function CompleteMinimalistBrutalistPortfolio() {
                             fontWeight: 900,
                             marginBottom: '2rem',
                             color: '#1a1a1a'
-                        }}>Let's Work Together</h3>
+                        }}>Let&apos;s Work Together</h3>
 
                         <p style={{
                             fontSize: '1rem',
@@ -1378,7 +1340,7 @@ export default function CompleteMinimalistBrutalistPortfolio() {
                             and interesting challenges. Let's create something amazing together.
                         </p>
 
-                        <div style={{ space: '2rem' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                             {[
                                 { icon: Mail, label: 'Email', value: 'francisco.duarry@example.com' },
                                 { icon: Phone, label: 'Phone', value: '+1 (555) 123-4567' },
@@ -1426,7 +1388,7 @@ export default function CompleteMinimalistBrutalistPortfolio() {
                             color: '#1a1a1a'
                         }}>Send Message</h3>
 
-                        <form onSubmit={handleFormSubmit} style={{ space: '1.5rem' }}>
+                        <form onSubmit={handleFormSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
                             <div style={{ marginBottom: '1.5rem' }}>
                                 <input
                                     type="text"
