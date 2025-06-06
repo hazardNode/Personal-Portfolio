@@ -221,8 +221,8 @@ export default function NotFound() {
 
                 {/* Description */}
                 <p style={styles.description}>
-                    The page you're looking for doesn't exist or has been moved.
-                    Don't worry, even the best developers get lost sometimes.
+                    The page you&apos;re looking for doesn&apos;t exist or has been moved.
+                    Don&apos;t worry, even the best developers get lost sometimes.
                 </p>
 
                 {/* Navigation Buttons */}
