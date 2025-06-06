@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useGSAP } from '@/hooks/useGSAP';
 import {
     ArrowRight, Github, Linkedin, Mail, ExternalLink,
-    Menu, X,  Award,
+    Menu, X, Award,
     MapPin, Clock, Send, 
     Twitter, FileText
 } from 'lucide-react';
@@ -14,6 +14,7 @@ export default function CompleteMinimalistBrutalistPortfolio() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [isDesktop, setIsDesktop] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
     // Real data from your files
     const projects = [
@@ -28,42 +29,7 @@ export default function CompleteMinimalistBrutalistPortfolio() {
             liveUrl: 'https://ddfarma.com',
             githubUrl: 'https://github.com/hazardNode/Proyecto-Integrado',
             year: '2025'
-        },
-        /*{
-            id: 'cybersec-dashboard',
-            title: 'Cybersecurity Dashboard',
-            description: 'Real-time security monitoring dashboard with threat visualization',
-            longDescription: 'A comprehensive cybersecurity dashboard that provides real-time monitoring of network threats, vulnerability assessments, and security metrics.',
-            technologies: ['React', 'D3.js', 'WebSocket', 'Python', 'FastAPI', 'Redis'],
-            category: 'Security',
-            featured: true,
-            githubUrl: 'https://github.com/username/security-dashboard',
-            year: '2024'
-        },
-        {
-            id: 'ai-content-generator',
-            title: 'AI Content Generator',
-            description: 'Machine learning powered content generation tool with custom training',
-            longDescription: 'An AI-powered content generation platform that uses custom-trained models to create blog posts, social media content, and marketing copy.',
-            technologies: ['Python', 'TensorFlow', 'OpenAI API', 'FastAPI', 'React', 'Docker'],
-            category: 'AI/ML',
-            featured: true,
-            liveUrl: 'https://ai-content-gen.com',
-            githubUrl: 'https://github.com/username/ai-content-generator',
-            year: '2023'
-        },
-        {
-            id: 'design-system',
-            title: 'Component Design System',
-            description: 'Comprehensive design system with reusable components and documentation',
-            longDescription: 'A complete design system built for scalable web applications, featuring a comprehensive component library, design tokens, and accessibility guidelines.',
-            technologies: ['React', 'TypeScript', 'Storybook', 'Figma', 'CSS-in-JS'],
-            category: 'Design',
-            featured: false,
-            liveUrl: 'https://design-system-demo.com',
-            githubUrl: 'https://github.com/username/design-system',
-            year: '2023'
-        }*/
+        }
     ];
 
     const experience = [
@@ -85,84 +51,10 @@ export default function CompleteMinimalistBrutalistPortfolio() {
                 'Created a postfix email server with custom security protocols',
                 'Improve user experience and functionality of existing applications with Vue.js and Tailwind CSS'
             ]
-        },
-        /*{
-            id: 'frontend-developer',
-            company: 'Digital Innovations Inc',
-            position: 'Frontend Developer',
-            duration: '2021 - 2022',
-            description: 'Developed responsive web applications and collaborated on full-stack projects using modern JavaScript frameworks.',
-            responsibilities: [
-                'Built responsive web applications using React and Vue.js',
-                'Collaborated with backend developers on API integration',
-                'Implemented pixel-perfect designs from Figma mockups',
-                'Optimized applications for performance and accessibility',
-                'Participated in agile development processes'
-            ],
-            technologies: ['React', 'Vue.js', 'JavaScript', 'SASS', 'REST APIs', 'Jest'],
-            achievements: [
-                'Delivered 15+ projects on time and within budget',
-                'Improved application performance by 25%',
-                'Implemented automated testing suite with 90% coverage',
-                'Contributed to open-source projects with 500+ stars'
-            ]
-        },
-        {
-            id: 'cybersec-analyst',
-            company: 'SecureNet Solutions',
-            position: 'Cybersecurity Analyst',
-            duration: '2020 - 2021',
-            description: 'Conducted security assessments and developed security protocols for enterprise clients.',
-            responsibilities: [
-                'Performed penetration testing on web applications and networks',
-                'Developed security assessment reports and remediation plans',
-                'Implemented security monitoring tools and dashboards',
-                'Conducted security awareness training for client teams',
-                'Collaborated on incident response procedures'
-            ],
-            technologies: ['Python', 'Kali Linux', 'Metasploit', 'Wireshark', 'OWASP ZAP', 'Burp Suite'],
-            achievements: [
-                'Identified critical vulnerabilities in 20+ client applications',
-                'Reduced security incidents by 45% through proactive monitoring',
-                'Developed automated security scanning tools',
-                'Achieved CISSP certification'
-            ]
-        }*/
+        }
     ];
 
     const certifications = [
-        /*{
-            id: 'aws-solutions-architect',
-            name: 'AWS Certified Solutions Architect',
-            issuer: 'Amazon Web Services',
-            date: '2024-01-15',
-            description: 'Validates expertise in designing distributed systems on AWS platform',
-            skills: ['Cloud Architecture', 'AWS Services', 'Security', 'Scalability']
-        },
-        {
-            id: 'react-advanced',
-            name: 'React Advanced Certification',
-            issuer: 'Meta',
-            date: '2023-08-20',
-            description: 'Advanced React concepts including performance optimization and testing',
-            skills: ['React', 'Performance', 'Testing', 'State Management']
-        },
-        {
-            id: 'cissp',
-            name: 'Certified Information Systems Security Professional',
-            issuer: '(ISC)²',
-            date: '2022-11-10',
-            description: 'Advanced certification in information security and risk management',
-            skills: ['Security Architecture', 'Risk Management', 'Incident Response', 'Compliance']
-        },
-        {
-            id: 'tensorflow-developer',
-            name: 'TensorFlow Developer Certificate',
-            issuer: 'Google',
-            date: '2023-03-05',
-            description: 'Demonstrates proficiency in building ML models with TensorFlow',
-            skills: ['Machine Learning', 'Neural Networks', 'Computer Vision', 'NLP']
-        },*/
         {
             id: 'ux-design',
             name: 'Google IT Professional',
@@ -177,12 +69,11 @@ export default function CompleteMinimalistBrutalistPortfolio() {
         { name: 'GitHub', url: 'https://github.com/hazardNode', icon: Github },
         { name: 'LinkedIn', url: 'https://linkedin.com/in/yourusername', icon: Linkedin },
         { name: 'Twitter', url: 'https://twitter.com/yourusername', icon: Twitter },
-        { name: 'Email', url: 'mailto:francisco.duarry@example.com', icon: Mail },
+        { name: 'Email', url: 'mailto:pacoduarry@gmail.com', icon: Mail },
         { name: 'Resume', url: '/resume.pdf', icon: FileText }
     ];
 
     useEffect(() => {
-
         const handleScroll = () => {
             const sections = ['hero', 'about', 'experience', 'projects', 'skills', 'certifications', 'contact'];
             const current = sections.find(section => {
@@ -197,7 +88,9 @@ export default function CompleteMinimalistBrutalistPortfolio() {
         };
 
         const handleResize = () => {
-            setIsDesktop(window.innerWidth > 768);
+            const width = window.innerWidth;
+            setIsDesktop(width > 1024);
+            setIsMobile(width < 768);
         };
 
         // Set initial values
@@ -212,68 +105,70 @@ export default function CompleteMinimalistBrutalistPortfolio() {
         };
     }, []);
 
-// Replace this part in your CustomHero.tsx component:
+    const containerRef = useGSAP((gsap) => {
+        // Only run animations on desktop to improve mobile performance
+        if (window.innerWidth > 768) {
+            // Hero animations
+            gsap.set('.hero-title', { y: 100, opacity: 0 });
+            gsap.set('.hero-accent', { scaleX: 0, transformOrigin: 'left' });
+            gsap.set('.hero-subtitle', { y: 50, opacity: 0 });
+            gsap.set('.hero-description', { y: 30, opacity: 0 });
+            gsap.set('.hero-button', { y: 40, opacity: 0, scale: 0.8 });
+            gsap.set('.hero-stats', { y: 60, opacity: 0 });
 
-const containerRef = useGSAP((gsap) => {
-    // Hero animations
-    gsap.set('.hero-title', { y: 100, opacity: 0 });
-    gsap.set('.hero-accent', { scaleX: 0, transformOrigin: 'left' });
-    gsap.set('.hero-subtitle', { y: 50, opacity: 0 });
-    gsap.set('.hero-description', { y: 30, opacity: 0 });
-    gsap.set('.hero-button', { y: 40, opacity: 0, scale: 0.8 });
-    gsap.set('.hero-stats', { y: 60, opacity: 0 });
+            const heroTl = gsap.timeline();
+            heroTl.to('.hero-title', { y: 0, opacity: 1, duration: 1.2, ease: 'power3.out' })
+                .to('.hero-accent', { scaleX: 1, duration: 0.8, ease: 'power2.out' }, '-=0.6')
+                .to('.hero-subtitle', { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.4')
+                .to('.hero-description', { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.3')
+                .to('.hero-button', { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: 'back.out(1.7)' }, '-=0.2')
+                .to('.hero-stats', { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: 'power2.out' }, '-=0.4');
 
-    const heroTl = gsap.timeline();
-    heroTl.to('.hero-title', { y: 0, opacity: 1, duration: 1.2, ease: 'power3.out' })
-        .to('.hero-accent', { scaleX: 1, duration: 0.8, ease: 'power2.out' }, '-=0.6')
-        .to('.hero-subtitle', { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.4')
-        .to('.hero-description', { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.3')
-        .to('.hero-button', { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: 'back.out(1.7)' }, '-=0.2')
-        .to('.hero-stats', { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: 'power2.out' }, '-=0.4');
+            // Section animations
+            gsap.utils.toArray('.section-title').forEach((title: Element) => {
+                gsap.fromTo(title,
+                    { y: 50, opacity: 0 },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        duration: 1,
+                        ease: 'power2.out',
+                        scrollTrigger: {
+                            trigger: title,
+                            start: 'top 80%'
+                        }
+                    }
+                );
+            });
 
-    // Section animations
-    gsap.utils.toArray('.section-title').forEach((title: Element) => {
-        gsap.fromTo(title,
-            { y: 50, opacity: 0 },
-            {
-                y: 0,
-                opacity: 1,
-                duration: 1,
-                ease: 'power2.out',
-                scrollTrigger: {
-                    trigger: title,
-                    start: 'top 80%'
-                }
-            }
-        );
+            gsap.utils.toArray('.content-card').forEach((card: Element, i: number) => {
+                gsap.fromTo(card,
+                    { y: 60, opacity: 0 },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        duration: 0.8,
+                        ease: 'power2.out',
+                        scrollTrigger: {
+                            trigger: card,
+                            start: 'top 85%'
+                        },
+                        delay: i * 0.1
+                    }
+                );
+            });
+
+            // Floating animations (desktop only)
+            gsap.to('.float-slow', {
+                y: -15, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut'
+            });
+
+            gsap.to('.float-medium', {
+                x: 10, y: -20, duration: 6, repeat: -1, yoyo: true, ease: 'sine.inOut'
+            });
+        }
     });
 
-    gsap.utils.toArray('.content-card').forEach((card: Element, i: number) => {
-        gsap.fromTo(card,
-            { y: 60, opacity: 0 },
-            {
-                y: 0,
-                opacity: 1,
-                duration: 0.8,
-                ease: 'power2.out',
-                scrollTrigger: {
-                    trigger: card,
-                    start: 'top 85%'
-                },
-                delay: i * 0.1
-            }
-        );
-    });
-
-    // Floating animations
-    gsap.to('.float-slow', {
-        y: -15, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut'
-    });
-
-    gsap.to('.float-medium', {
-        x: 10, y: -20, duration: 6, repeat: -1, yoyo: true, ease: 'sine.inOut'
-    });
-});
     const scrollToSection = (sectionId: string) => {
         const element = document.getElementById(sectionId);
         element?.scrollIntoView({ behavior: 'smooth' });
@@ -293,7 +188,7 @@ const containerRef = useGSAP((gsap) => {
                 linear-gradient(to bottom, rgba(0, 82, 204, 0.03) 1px, transparent 1px),
                 #f9f9f9
             `,
-            backgroundSize: '24px 24px',
+            backgroundSize: isMobile ? '16px 16px' : '24px 24px',
             color: '#1a1a1a',
             fontFamily: '"JetBrains Mono", "Fira Code", monospace',
             position: 'relative' as const,
@@ -312,19 +207,19 @@ const containerRef = useGSAP((gsap) => {
         navContent: {
             maxWidth: '1400px',
             margin: '0 auto',
-            padding: '1rem 2rem',
+            padding: isMobile ? '1rem 1rem' : '1rem 2rem',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center'
         },
         logo: {
-            fontSize: '1.2rem',
+            fontSize: isMobile ? '1rem' : '1.2rem',
             fontWeight: 900,
             color: '#1a1a1a'
         },
         navMenu: {
             display: 'flex',
-            gap: '2rem',
+            gap: isMobile ? '1rem' : '2rem',
             alignItems: 'center'
         },
         navLink: {
@@ -341,18 +236,20 @@ const containerRef = useGSAP((gsap) => {
             zIndex: 10,
             maxWidth: '1400px',
             margin: '0 auto',
-            padding: '0 2rem',
-            minHeight: '100vh',
+            padding: isMobile ? '0 1rem' : '0 2rem',
+            minHeight: isMobile ? 'auto' : '100vh',
             display: 'flex',
             flexDirection: 'column' as const,
-            justifyContent: 'center'
+            justifyContent: isMobile ? 'flex-start' : 'center',
+            paddingTop: isMobile ? '2rem' : '0',
+            paddingBottom: isMobile ? '3rem' : '0'
         },
         sectionTitle: {
-            fontSize: 'clamp(3rem, 8vw, 6rem)',
+            fontSize: isMobile ? 'clamp(2rem, 8vw, 3rem)' : 'clamp(3rem, 8vw, 6rem)',
             fontWeight: 900,
             lineHeight: 0.9,
             letterSpacing: '-0.02em',
-            marginBottom: '4rem',
+            marginBottom: isMobile ? '2rem' : '4rem',
             color: '#1a1a1a',
             position: 'relative' as const
         },
@@ -362,17 +259,17 @@ const containerRef = useGSAP((gsap) => {
             left: 0,
             height: '6px',
             background: '#0052cc',
-            width: '120px'
+            width: isMobile ? '80px' : '120px'
         },
         grid: {
             display: 'grid',
-            gap: '2rem',
-            marginBottom: '4rem'
+            gap: isMobile ? '1.5rem' : '2rem',
+            marginBottom: isMobile ? '2rem' : '4rem'
         },
         card: {
             background: '#ffffff',
             border: '2px solid #e0e0e0',
-            padding: '3rem',
+            padding: isMobile ? '1.5rem' : '3rem',
             transition: 'all 0.3s ease',
             position: 'relative' as const
         },
@@ -383,8 +280,8 @@ const containerRef = useGSAP((gsap) => {
             background: '#0052cc',
             color: '#ffffff',
             border: 'none',
-            padding: '1.2rem 2.5rem',
-            fontSize: '1rem',
+            padding: isMobile ? '1rem 1.5rem' : '1.2rem 2.5rem',
+            fontSize: isMobile ? '0.9rem' : '1rem',
             fontWeight: 600,
             fontFamily: 'inherit',
             cursor: 'pointer',
@@ -419,7 +316,13 @@ const containerRef = useGSAP((gsap) => {
 
     const AnimatedSVG = () => (
         <svg
-            style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 1 } as const}
+            style={{ 
+                position: 'absolute', 
+                inset: 0, 
+                pointerEvents: 'none', 
+                zIndex: 1,
+                opacity: isMobile ? 0.3 : 1 // Reduce opacity on mobile for better readability
+            } as const}
             viewBox="0 0 1400 800"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -431,24 +334,6 @@ const containerRef = useGSAP((gsap) => {
                 <rect x="90" y="90" width="20" height="60" fill="#0052cc" opacity="0.06">
                     <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 100 120" to="-360 100 120" dur="30s" repeatCount="indefinite" />
                 </rect>
-            </g>
-
-            <g className="parallax">
-                <path d="M200 180 L280 200 L320 160 L380 180 L420 140" stroke="#0052cc" strokeWidth="2" fill="none" opacity="0.15" className="float-medium">
-                    <animate attributeName="stroke-dasharray" values="0,1000;1000,0;0,1000" dur="12s" repeatCount="indefinite" />
-                </path>
-                <circle cx="200" cy="180" r="4" fill="#0052cc" opacity="0.4">
-                    <animate attributeName="r" values="4;8;4" dur="4s" repeatCount="indefinite" />
-                </circle>
-                <circle cx="420" cy="140" r="4" fill="#0052cc" opacity="0.4">
-                    <animate attributeName="r" values="4;7;4" dur="5s" repeatCount="indefinite" />
-                </circle>
-            </g>
-
-            <g className="parallax">
-                <polygon points="1200,120 1250,100 1300,120 1280,160 1220,160" fill="none" stroke="#0052cc" strokeWidth="2" opacity="0.12">
-                    <animateTransform attributeName="transform" attributeType="XML" type="scale" values="1;1.3;1" dur="10s" repeatCount="indefinite" />
-                </polygon>
             </g>
         </svg>
     );
@@ -527,7 +412,12 @@ const containerRef = useGSAP((gsap) => {
             </nav>
 
             {/* Hero Section */}
-            <section id="hero" style={{ ...styles.section, paddingTop: '6rem' }}>
+            <section id="hero" style={{ 
+                ...styles.section, 
+                paddingTop: isMobile ? '8rem' : '6rem',
+                minHeight: isMobile ? '100vh' : '100vh',
+                justifyContent: 'center'
+            }}>
                 <div>
                     <h1 className="hero-title section-title" style={{ ...styles.sectionTitle, color: '#1a1a1a' }}>
                         FCO. JOSÉ DUARRY GARCÍA
@@ -535,7 +425,7 @@ const containerRef = useGSAP((gsap) => {
                     </h1>
 
                     <p className="hero-subtitle" style={{
-                        fontSize: 'clamp(1.2rem, 3vw, 1.8rem)',
+                        fontSize: isMobile ? 'clamp(1rem, 4vw, 1.4rem)' : 'clamp(1.2rem, 3vw, 1.8rem)',
                         fontWeight: 400,
                         letterSpacing: '0.1em',
                         color: '#666666',
@@ -546,7 +436,7 @@ const containerRef = useGSAP((gsap) => {
                     </p>
 
                     <p className="hero-description" style={{
-                        fontSize: 'clamp(1rem, 2.5vw, 1.3rem)',
+                        fontSize: isMobile ? 'clamp(0.9rem, 3vw, 1.1rem)' : 'clamp(1rem, 2.5vw, 1.3rem)',
                         lineHeight: 1.6,
                         color: '#666666',
                         maxWidth: '600px',
@@ -561,12 +451,16 @@ const containerRef = useGSAP((gsap) => {
                         className="hero-button"
                         style={styles.button}
                         onMouseEnter={(e) => {
-                            e.currentTarget.style.background = '#1a1a1a';
-                            e.currentTarget.style.transform = 'translateX(10px)';
+                            if (!isMobile) {
+                                e.currentTarget.style.background = '#1a1a1a';
+                                e.currentTarget.style.transform = 'translateX(10px)';
+                            }
                         }}
                         onMouseLeave={(e) => {
-                            e.currentTarget.style.background = '#0052cc';
-                            e.currentTarget.style.transform = 'translateX(0)';
+                            if (!isMobile) {
+                                e.currentTarget.style.background = '#0052cc';
+                                e.currentTarget.style.transform = 'translateX(0)';
+                            }
                         }}
                         onClick={() => scrollToSection('projects')}
                     >
@@ -577,7 +471,7 @@ const containerRef = useGSAP((gsap) => {
                     {/* Stats */}
                     <div className="hero-stats" style={{
                         ...styles.grid,
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                        gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(auto-fit, minmax(200px, 1fr))',
                         marginTop: '4rem'
                     }}>
                         {[
@@ -591,28 +485,32 @@ const containerRef = useGSAP((gsap) => {
                                 className="content-card"
                                 style={{
                                     ...styles.card,
-                                    padding: '2rem',
+                                    padding: isMobile ? '1.5rem' : '2rem',
                                     textAlign: 'center'
                                 }}
                                 onMouseEnter={(e) => {
-                                    e.currentTarget.style.borderColor = '#0052cc';
-                                    e.currentTarget.style.transform = 'translateY(-5px)';
-                                    e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 82, 204, 0.1)';
+                                    if (!isMobile) {
+                                        e.currentTarget.style.borderColor = '#0052cc';
+                                        e.currentTarget.style.transform = 'translateY(-5px)';
+                                        e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 82, 204, 0.1)';
+                                    }
                                 }}
                                 onMouseLeave={(e) => {
-                                    e.currentTarget.style.borderColor = '#e0e0e0';
-                                    e.currentTarget.style.transform = 'translateY(0)';
-                                    e.currentTarget.style.boxShadow = 'none';
+                                    if (!isMobile) {
+                                        e.currentTarget.style.borderColor = '#e0e0e0';
+                                        e.currentTarget.style.transform = 'translateY(0)';
+                                        e.currentTarget.style.boxShadow = 'none';
+                                    }
                                 }}
                             >
                                 <div style={{
-                                    fontSize: '3rem',
+                                    fontSize: isMobile ? '2rem' : '3rem',
                                     fontWeight: 900,
                                     color: '#0052cc',
                                     marginBottom: '0.5rem'
                                 }}>{stat.number}</div>
                                 <div style={{
-                                    fontSize: '0.9rem',
+                                    fontSize: isMobile ? '0.8rem' : '0.9rem',
                                     color: '#666666',
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em'
@@ -624,16 +522,19 @@ const containerRef = useGSAP((gsap) => {
                     {/* Social Links */}
                     <div style={{
                         display: 'flex',
-                        gap: '2rem',
+                        gap: isMobile ? '1rem' : '2rem',
                         alignItems: 'center',
-                        marginTop: '4rem'
+                        marginTop: '4rem',
+                        flexWrap: 'wrap'
                     }}>
                         <span style={{
                             fontSize: '0.9rem',
                             color: '#666666',
                             marginRight: '1rem',
                             textTransform: 'uppercase',
-                            letterSpacing: '0.1em'
+                            letterSpacing: '0.1em',
+                            width: isMobile ? '100%' : 'auto',
+                            marginBottom: isMobile ? '1rem' : '0'
                         }}>
                             Connect —
                         </span>
@@ -646,8 +547,8 @@ const containerRef = useGSAP((gsap) => {
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
-                                    width: '50px',
-                                    height: '50px',
+                                    width: isMobile ? '45px' : '50px',
+                                    height: isMobile ? '45px' : '50px',
                                     background: '#1a1a1a',
                                     color: '#ffffff',
                                     textDecoration: 'none',
@@ -656,13 +557,17 @@ const containerRef = useGSAP((gsap) => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onMouseEnter={(e) => {
-                                    e.currentTarget.style.background = '#0052cc';
+                                    if (!isMobile) {
+                                        e.currentTarget.style.background = '#0052cc';
+                                    }
                                 }}
                                 onMouseLeave={(e) => {
-                                    e.currentTarget.style.background = '#1a1a1a';
+                                    if (!isMobile) {
+                                        e.currentTarget.style.background = '#1a1a1a';
+                                    }
                                 }}
                             >
-                                <social.icon size={20} />
+                                <social.icon size={isMobile ? 18 : 20} />
                             </a>
                         ))}
                     </div>
@@ -678,19 +583,19 @@ const containerRef = useGSAP((gsap) => {
 
                 <div style={{
                     ...styles.grid,
-                    gridTemplateColumns: '1fr 1fr',
-                    gap: '4rem',
+                    gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+                    gap: isMobile ? '2rem' : '4rem',
                     alignItems: 'start'
                 }}>
                     <div className="content-card" style={styles.card}>
                         <h3 style={{
-                            fontSize: '1.8rem',
+                            fontSize: isMobile ? '1.4rem' : '1.8rem',
                             fontWeight: 900,
                             marginBottom: '2rem',
                             color: '#1a1a1a'
                         }}>Who I Am</h3>
                         <p style={{
-                            fontSize: '1rem',
+                            fontSize: isMobile ? '0.9rem' : '1rem',
                             lineHeight: 1.6,
                             color: '#666666',
                             marginBottom: '1.5rem'
@@ -700,7 +605,7 @@ const containerRef = useGSAP((gsap) => {
                             problems from multiple angles.
                         </p>
                         <p style={{
-                            fontSize: '1rem',
+                            fontSize: isMobile ? '0.9rem' : '1rem',
                             lineHeight: 1.6,
                             color: '#666666'
                         }}>
@@ -712,7 +617,7 @@ const containerRef = useGSAP((gsap) => {
 
                     <div className="content-card" style={styles.card}>
                         <h3 style={{
-                            fontSize: '1.8rem',
+                            fontSize: isMobile ? '1.4rem' : '1.8rem',
                             fontWeight: 900,
                             marginBottom: '2rem',
                             color: '#1a1a1a'
@@ -733,8 +638,15 @@ const containerRef = useGSAP((gsap) => {
                                     justifyContent: 'space-between',
                                     alignItems: 'center'
                                 }}>
-                                    <span style={{ fontSize: '0.9rem', color: '#666666' }}>{service}</span>
-                                    <span style={{ fontSize: '0.8rem', color: '#0052cc', fontWeight: 600 }}>
+                                    <span style={{ 
+                                        fontSize: isMobile ? '0.85rem' : '0.9rem', 
+                                        color: '#666666' 
+                                    }}>{service}</span>
+                                    <span style={{ 
+                                        fontSize: isMobile ? '0.75rem' : '0.8rem', 
+                                        color: '#0052cc', 
+                                        fontWeight: 600 
+                                    }}>
                                         {String(index + 1).padStart(2, '0')}
                                     </span>
                                 </div>
@@ -763,33 +675,35 @@ const containerRef = useGSAP((gsap) => {
                                 justifyContent: 'space-between',
                                 alignItems: 'start',
                                 marginBottom: '1.5rem',
-                                flexWrap: 'wrap'
+                                flexWrap: 'wrap',
+                                gap: isMobile ? '1rem' : '0'
                             }}>
                                 <div>
                                     <h3 style={{
-                                        fontSize: '1.5rem',
+                                        fontSize: isMobile ? '1.2rem' : '1.5rem',
                                         fontWeight: 900,
                                         marginBottom: '0.5rem',
                                         color: '#1a1a1a'
                                     }}>{exp.position}</h3>
                                     <p style={{
-                                        fontSize: '1rem',
+                                        fontSize: isMobile ? '0.9rem' : '1rem',
                                         color: '#0052cc',
                                         fontWeight: 600
                                     }}>{exp.company}</p>
                                 </div>
                                 <span style={{
-                                    fontSize: '0.9rem',
+                                    fontSize: isMobile ? '0.8rem' : '0.9rem',
                                     color: '#666666',
                                     padding: '0.5rem 1rem',
                                     background: '#f0f0f0',
                                     textTransform: 'uppercase',
-                                    letterSpacing: '0.05em'
+                                    letterSpacing: '0.05em',
+                                    whiteSpace: 'nowrap'
                                 }}>{exp.duration}</span>
                             </div>
 
                             <p style={{
-                                fontSize: '1rem',
+                                fontSize: isMobile ? '0.9rem' : '1rem',
                                 lineHeight: 1.6,
                                 color: '#666666',
                                 marginBottom: '2rem'
@@ -797,7 +711,7 @@ const containerRef = useGSAP((gsap) => {
 
                             <div style={{ marginBottom: '2rem' }}>
                                 <h4 style={{
-                                    fontSize: '0.9rem',
+                                    fontSize: isMobile ? '0.8rem' : '0.9rem',
                                     fontWeight: 700,
                                     marginBottom: '1rem',
                                     color: '#1a1a1a',
@@ -807,7 +721,7 @@ const containerRef = useGSAP((gsap) => {
                                 <ul style={{ margin: 0, paddingLeft: '1rem' }}>
                                     {exp.responsibilities.slice(0, 3).map((responsibility, idx) => (
                                         <li key={idx} style={{
-                                            fontSize: '0.9rem',
+                                            fontSize: isMobile ? '0.8rem' : '0.9rem',
                                             color: '#666666',
                                             marginBottom: '0.5rem'
                                         }}>
@@ -819,7 +733,7 @@ const containerRef = useGSAP((gsap) => {
 
                             <div style={{ marginBottom: '2rem' }}>
                                 <h4 style={{
-                                    fontSize: '0.9rem',
+                                    fontSize: isMobile ? '0.8rem' : '0.9rem',
                                     fontWeight: 700,
                                     marginBottom: '1rem',
                                     color: '#1a1a1a',
@@ -831,7 +745,7 @@ const containerRef = useGSAP((gsap) => {
                                         <span key={tech} style={{
                                             padding: '0.3rem 0.8rem',
                                             background: '#f0f0f0',
-                                            fontSize: '0.8rem',
+                                            fontSize: isMobile ? '0.7rem' : '0.8rem',
                                             color: '#666666'
                                         }}>
                                             {tech}
@@ -842,7 +756,7 @@ const containerRef = useGSAP((gsap) => {
 
                             <div>
                                 <h4 style={{
-                                    fontSize: '0.9rem',
+                                    fontSize: isMobile ? '0.8rem' : '0.9rem',
                                     fontWeight: 700,
                                     marginBottom: '1rem',
                                     color: '#1a1a1a',
@@ -854,7 +768,7 @@ const containerRef = useGSAP((gsap) => {
                                         <span key={achievement} style={{
                                             padding: '0.3rem 0.8rem',
                                             background: '#e6f3ff',
-                                            fontSize: '0.8rem',
+                                            fontSize: isMobile ? '0.7rem' : '0.8rem',
                                             color: '#0052cc',
                                             border: '1px solid #b3d9ff'
                                         }}>
@@ -877,7 +791,7 @@ const containerRef = useGSAP((gsap) => {
 
                 <div style={{
                     ...styles.grid,
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))'
+                    gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(400px, 1fr))'
                 }}>
                     {projects.filter(p => p.featured).map((project) => (
                         <div
@@ -888,22 +802,28 @@ const containerRef = useGSAP((gsap) => {
                                 overflow: 'hidden'
                             }}
                             onMouseEnter={(e) => {
-                                e.currentTarget.style.borderColor = '#0052cc';
-                                e.currentTarget.style.transform = 'translateY(-5px)';
+                                if (!isMobile) {
+                                    e.currentTarget.style.borderColor = '#0052cc';
+                                    e.currentTarget.style.transform = 'translateY(-5px)';
+                                }
                             }}
                             onMouseLeave={(e) => {
-                                e.currentTarget.style.borderColor = '#e0e0e0';
-                                e.currentTarget.style.transform = 'translateY(0)';
+                                if (!isMobile) {
+                                    e.currentTarget.style.borderColor = '#e0e0e0';
+                                    e.currentTarget.style.transform = 'translateY(0)';
+                                }
                             }}
                         >
                             <div style={{
                                 display: 'flex',
                                 justifyContent: 'space-between',
                                 alignItems: 'start',
-                                marginBottom: '1.5rem'
+                                marginBottom: '1.5rem',
+                                flexWrap: 'wrap',
+                                gap: isMobile ? '0.5rem' : '0'
                             }}>
                                 <span style={{
-                                    fontSize: '0.8rem',
+                                    fontSize: isMobile ? '0.7rem' : '0.8rem',
                                     color: '#666666',
                                     padding: '0.3rem 0.8rem',
                                     background: '#f0f0f0',
@@ -911,21 +831,21 @@ const containerRef = useGSAP((gsap) => {
                                     letterSpacing: '0.05em'
                                 }}>{project.category}</span>
                                 <span style={{
-                                    fontSize: '0.8rem',
+                                    fontSize: isMobile ? '0.7rem' : '0.8rem',
                                     color: '#0052cc',
                                     fontWeight: 600
                                 }}>{project.year}</span>
                             </div>
 
                             <h3 style={{
-                                fontSize: '1.5rem',
+                                fontSize: isMobile ? '1.2rem' : '1.5rem',
                                 fontWeight: 900,
                                 marginBottom: '1rem',
                                 color: '#1a1a1a'
                             }}>{project.title}</h3>
 
                             <p style={{
-                                fontSize: '1rem',
+                                fontSize: isMobile ? '0.9rem' : '1rem',
                                 lineHeight: 1.6,
                                 color: '#666666',
                                 marginBottom: '2rem'
@@ -941,7 +861,7 @@ const containerRef = useGSAP((gsap) => {
                                     <span key={tech} style={{
                                         padding: '0.3rem 0.8rem',
                                         background: '#f0f0f0',
-                                        fontSize: '0.8rem',
+                                        fontSize: isMobile ? '0.7rem' : '0.8rem',
                                         color: '#666666'
                                     }}>
                                         {tech}
@@ -951,7 +871,7 @@ const containerRef = useGSAP((gsap) => {
                                     <span style={{
                                         padding: '0.3rem 0.8rem',
                                         background: '#f0f0f0',
-                                        fontSize: '0.8rem',
+                                        fontSize: isMobile ? '0.7rem' : '0.8rem',
                                         color: '#666666'
                                     }}>
                                         +{project.technologies.length - 4} more
@@ -959,7 +879,11 @@ const containerRef = useGSAP((gsap) => {
                                 )}
                             </div>
 
-                            <div style={{ display: 'flex', gap: '1rem' }}>
+                            <div style={{ 
+                                display: 'flex', 
+                                gap: '1rem',
+                                flexDirection: isMobile ? 'column' : 'row'
+                            }}>
                                 {project.liveUrl && (
                                     <a
                                         href={project.liveUrl}
@@ -968,7 +892,8 @@ const containerRef = useGSAP((gsap) => {
                                         style={{
                                             ...styles.button,
                                             padding: '0.8rem 1.5rem',
-                                            fontSize: '0.8rem'
+                                            fontSize: '0.8rem',
+                                            justifyContent: 'center'
                                         }}
                                     >
                                         View Live
@@ -986,7 +911,8 @@ const containerRef = useGSAP((gsap) => {
                                             color: '#1a1a1a',
                                             border: '2px solid #e0e0e0',
                                             padding: '0.8rem 1.5rem',
-                                            fontSize: '0.8rem'
+                                            fontSize: '0.8rem',
+                                            justifyContent: 'center'
                                         }}
                                     >
                                         <Github size={16} />
@@ -1011,7 +937,7 @@ const containerRef = useGSAP((gsap) => {
                     marginBottom: '3rem'
                 }}>
                     <h3 style={{
-                        fontSize: '1.5rem',
+                        fontSize: isMobile ? '1.2rem' : '1.5rem',
                         fontWeight: 900,
                         marginBottom: '2rem',
                         color: '#1a1a1a',
@@ -1021,8 +947,8 @@ const containerRef = useGSAP((gsap) => {
 
                     <div style={{
                         display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                        gap: '3rem'
+                        gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(250px, 1fr))',
+                        gap: isMobile ? '2rem' : '3rem'
                     }}>
                         {[
                             {
@@ -1044,7 +970,7 @@ const containerRef = useGSAP((gsap) => {
                         ].map((category) => (
                             <div key={category.title}>
                                 <h4 style={{
-                                    fontSize: '1.1rem',
+                                    fontSize: isMobile ? '1rem' : '1.1rem',
                                     fontWeight: 700,
                                     marginBottom: '1.5rem',
                                     color: '#0052cc',
@@ -1058,7 +984,7 @@ const containerRef = useGSAP((gsap) => {
                                 }}>
                                     {category.skills.map((skill, index) => (
                                         <li key={skill} style={{
-                                            fontSize: '0.95rem',
+                                            fontSize: isMobile ? '0.85rem' : '0.95rem',
                                             color: '#666666',
                                             padding: '0.75rem 0',
                                             borderBottom: index < category.skills.length - 1 ? '1px solid #f0f0f0' : 'none',
@@ -1086,7 +1012,7 @@ const containerRef = useGSAP((gsap) => {
                 {/* Technical Proficiencies */}
                 <div className="content-card" style={styles.card}>
                     <h3 style={{
-                        fontSize: '1.5rem',
+                        fontSize: isMobile ? '1.2rem' : '1.5rem',
                         fontWeight: 900,
                         marginBottom: '2rem',
                         color: '#1a1a1a',
@@ -1096,7 +1022,7 @@ const containerRef = useGSAP((gsap) => {
 
                     <div style={{
                         display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                        gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(200px, 1fr))',
                         gap: '2rem'
                     }}>
                         {[
@@ -1119,7 +1045,7 @@ const containerRef = useGSAP((gsap) => {
                         ].map((tech) => (
                             <div key={tech.category}>
                                 <h4 style={{
-                                    fontSize: '0.9rem',
+                                    fontSize: isMobile ? '0.8rem' : '0.9rem',
                                     fontWeight: 700,
                                     marginBottom: '1rem',
                                     color: '#1a1a1a',
@@ -1133,7 +1059,7 @@ const containerRef = useGSAP((gsap) => {
                                 }}>
                                     {tech.items.map((item) => (
                                         <span key={item} style={{
-                                            fontSize: '0.85rem',
+                                            fontSize: isMobile ? '0.75rem' : '0.85rem',
                                             color: '#666666',
                                             padding: '0.4rem 0.8rem',
                                             background: '#f8f9fa',
@@ -1144,65 +1070,6 @@ const containerRef = useGSAP((gsap) => {
                                         </span>
                                     ))}
                                 </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Professional Focus Areas */}
-                <div className="content-card" style={{
-                    ...styles.card,
-                    marginTop: '3rem'
-                }}>
-                    <h3 style={{
-                        fontSize: '1.5rem',
-                        fontWeight: 900,
-                        marginBottom: '2rem',
-                        color: '#1a1a1a',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.05em'
-                    }}>Professional Focus Areas</h3>
-
-                    <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                        gap: '2rem'
-                    }}>
-                        {[
-                            {
-                                area: 'Full-Stack Development',
-                                description: 'End-to-end application development with modern frameworks and best practices'
-                            },
-                            {
-                                area: 'Security Engineering',
-                                description: 'Application security, penetration testing, and vulnerability assessment'
-                            },
-                            {
-                                area: 'Performance Optimization',
-                                description: 'Frontend optimization, bundle analysis, and Core Web Vitals improvement'
-                            },
-                            {
-                                area: 'Technical Leadership',
-                                description: 'Team mentoring, code review, and architectural decision making'
-                            }
-                        ].map((focus) => (
-                            <div key={focus.area} style={{
-                                padding: '1.5rem',
-                                background: '#f8f9fa',
-                                border: '1px solid #e9ecef'
-                            }}>
-                                <h4 style={{
-                                    fontSize: '1.1rem',
-                                    fontWeight: 700,
-                                    marginBottom: '0.8rem',
-                                    color: '#1a1a1a'
-                                }}>{focus.area}</h4>
-                                <p style={{
-                                    fontSize: '0.9rem',
-                                    color: '#666666',
-                                    lineHeight: 1.5,
-                                    margin: 0
-                                }}>{focus.description}</p>
                             </div>
                         ))}
                     </div>
@@ -1218,7 +1085,7 @@ const containerRef = useGSAP((gsap) => {
 
                 <div style={{
                     ...styles.grid,
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))'
+                    gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(350px, 1fr))'
                 }}>
                     {certifications.map((cert) => (
                         <div
@@ -1226,12 +1093,16 @@ const containerRef = useGSAP((gsap) => {
                             className="content-card"
                             style={styles.card}
                             onMouseEnter={(e) => {
-                                e.currentTarget.style.borderColor = '#0052cc';
-                                e.currentTarget.style.transform = 'translateY(-5px)';
+                                if (!isMobile) {
+                                    e.currentTarget.style.borderColor = '#0052cc';
+                                    e.currentTarget.style.transform = 'translateY(-5px)';
+                                }
                             }}
                             onMouseLeave={(e) => {
-                                e.currentTarget.style.borderColor = '#e0e0e0';
-                                e.currentTarget.style.transform = 'translateY(0)';
+                                if (!isMobile) {
+                                    e.currentTarget.style.borderColor = '#e0e0e0';
+                                    e.currentTarget.style.transform = 'translateY(0)';
+                                }
                             }}
                         >
                             <div style={{
@@ -1240,9 +1111,9 @@ const containerRef = useGSAP((gsap) => {
                                 alignItems: 'start',
                                 marginBottom: '1.5rem'
                             }}>
-                                <Award size={32} style={{ color: '#0052cc' }} />
+                                <Award size={isMobile ? 28 : 32} style={{ color: '#0052cc' }} />
                                 <span style={{
-                                    fontSize: '0.8rem',
+                                    fontSize: isMobile ? '0.7rem' : '0.8rem',
                                     color: '#666666',
                                     padding: '0.3rem 0.8rem',
                                     background: '#f0f0f0'
@@ -1252,21 +1123,21 @@ const containerRef = useGSAP((gsap) => {
                             </div>
 
                             <h3 style={{
-                                fontSize: '1.3rem',
+                                fontSize: isMobile ? '1.1rem' : '1.3rem',
                                 fontWeight: 900,
                                 marginBottom: '0.5rem',
                                 color: '#1a1a1a'
                             }}>{cert.name}</h3>
 
                             <p style={{
-                                fontSize: '1rem',
+                                fontSize: isMobile ? '0.9rem' : '1rem',
                                 color: '#0052cc',
                                 fontWeight: 600,
                                 marginBottom: '1rem'
                             }}>{cert.issuer}</p>
 
                             <p style={{
-                                fontSize: '0.9rem',
+                                fontSize: isMobile ? '0.8rem' : '0.9rem',
                                 lineHeight: 1.6,
                                 color: '#666666',
                                 marginBottom: '1.5rem'
@@ -1274,7 +1145,7 @@ const containerRef = useGSAP((gsap) => {
 
                             <div>
                                 <h4 style={{
-                                    fontSize: '0.8rem',
+                                    fontSize: isMobile ? '0.7rem' : '0.8rem',
                                     fontWeight: 700,
                                     marginBottom: '0.8rem',
                                     color: '#1a1a1a',
@@ -1286,7 +1157,7 @@ const containerRef = useGSAP((gsap) => {
                                         <span key={skill} style={{
                                             padding: '0.3rem 0.8rem',
                                             background: '#e6f3ff',
-                                            fontSize: '0.7rem',
+                                            fontSize: isMobile ? '0.65rem' : '0.7rem',
                                             color: '#0052cc',
                                             border: '1px solid #b3d9ff'
                                         }}>
@@ -1301,7 +1172,11 @@ const containerRef = useGSAP((gsap) => {
             </section>
 
             {/* Contact Section */}
-            <section id="contact" style={{ ...styles.section, minHeight: 'auto', paddingBottom: '4rem' }}>
+            <section id="contact" style={{ 
+                ...styles.section, 
+                minHeight: 'auto', 
+                paddingBottom: '4rem' 
+            }}>
                 <h2 className="section-title" style={styles.sectionTitle}>
                     CONTACT
                     <div style={styles.sectionAccent} />
@@ -1309,20 +1184,20 @@ const containerRef = useGSAP((gsap) => {
 
                 <div style={{
                     ...styles.grid,
-                    gridTemplateColumns: '1fr 1fr',
-                    gap: '4rem',
+                    gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+                    gap: isMobile ? '2rem' : '4rem',
                     alignItems: 'start'
                 }}>
                     <div className="content-card" style={styles.card}>
                         <h3 style={{
-                            fontSize: '1.8rem',
+                            fontSize: isMobile ? '1.4rem' : '1.8rem',
                             fontWeight: 900,
                             marginBottom: '2rem',
                             color: '#1a1a1a'
                         }}>Let&apos;s Work Together</h3>
 
                         <p style={{
-                            fontSize: '1rem',
+                            fontSize: isMobile ? '0.9rem' : '1rem',
                             lineHeight: 1.6,
                             color: '#666666',
                             marginBottom: '3rem'
@@ -1334,7 +1209,6 @@ const containerRef = useGSAP((gsap) => {
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                             {[
                                 { icon: Mail, label: 'Email', value: 'pacoduarry@gmail.com' },
-                                //{ icon: Phone, label: 'Phone', value: '+1 (555) 123-4567' },
                                 { icon: MapPin, label: 'Location', value: 'Seville, Spain' },
                                 { icon: Clock, label: 'Response Time', value: 'Within 24 hours' }
                             ].map((contact, index) => (
@@ -1342,7 +1216,7 @@ const containerRef = useGSAP((gsap) => {
                                     display: 'flex',
                                     alignItems: 'center',
                                     gap: '1rem',
-                                    marginBottom: index < 3 ? '1.5rem' : '0'
+                                    marginBottom: index < 2 ? '1.5rem' : '0'
                                 }}>
                                     <div style={{
                                         width: '40px',
@@ -1356,13 +1230,13 @@ const containerRef = useGSAP((gsap) => {
                                     </div>
                                     <div>
                                         <p style={{
-                                            fontSize: '0.9rem',
+                                            fontSize: isMobile ? '0.8rem' : '0.9rem',
                                             fontWeight: 600,
                                             color: '#1a1a1a',
                                             marginBottom: '0.2rem'
                                         }}>{contact.label}</p>
                                         <p style={{
-                                            fontSize: '0.9rem',
+                                            fontSize: isMobile ? '0.8rem' : '0.9rem',
                                             color: '#666666'
                                         }}>{contact.value}</p>
                                     </div>
@@ -1373,7 +1247,7 @@ const containerRef = useGSAP((gsap) => {
 
                     <div className="content-card" style={styles.card}>
                         <h3 style={{
-                            fontSize: '1.8rem',
+                            fontSize: isMobile ? '1.4rem' : '1.8rem',
                             fontWeight: 900,
                             marginBottom: '2rem',
                             color: '#1a1a1a'
@@ -1422,10 +1296,14 @@ const containerRef = useGSAP((gsap) => {
                                 type="submit"
                                 style={styles.button}
                                 onMouseEnter={(e) => {
-                                    e.currentTarget.style.background = '#1a1a1a';
+                                    if (!isMobile) {
+                                        e.currentTarget.style.background = '#1a1a1a';
+                                    }
                                 }}
                                 onMouseLeave={(e) => {
-                                    e.currentTarget.style.background = '#0052cc';
+                                    if (!isMobile) {
+                                        e.currentTarget.style.background = '#0052cc';
+                                    }
                                 }}
                             >
                                 Send Message
@@ -1441,20 +1319,20 @@ const containerRef = useGSAP((gsap) => {
                 position: 'relative',
                 zIndex: 10,
                 borderTop: '1px solid rgba(0, 82, 204, 0.1)',
-                padding: '3rem 2rem',
+                padding: isMobile ? '2rem 1rem' : '3rem 2rem',
                 textAlign: 'center',
                 maxWidth: '1400px',
                 margin: '0 auto'
             }}>
                 <p style={{
-                    fontSize: '0.9rem',
+                    fontSize: isMobile ? '0.8rem' : '0.9rem',
                     color: '#666666',
                     marginBottom: '1rem'
                 }}>
                     © 2024 Fco. José Duarry García. All rights reserved.
                 </p>
                 <p style={{
-                    fontSize: '0.8rem',
+                    fontSize: isMobile ? '0.7rem' : '0.8rem',
                     color: '#999999'
                 }}>
                     Built with precision, designed with purpose.
