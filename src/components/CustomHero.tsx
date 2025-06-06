@@ -4,14 +4,12 @@ import { useState, useEffect } from 'react';
 import { useGSAP } from '@/hooks/useGSAP';
 import {
     ArrowRight, Github, Linkedin, Mail, ExternalLink,
-     Palette, Shield, Brain, Menu, X,  Award,
-    Phone, MapPin, Clock, Send, 
-    Code2, Smartphone, Figma, Brush, Eye, Network, AlertTriangle,
-    Search, Cpu, BarChart3, Package, Cloud, Settings, Twitter, FileText
+    Menu, X,  Award,
+    MapPin, Clock, Send, 
+    Twitter, FileText
 } from 'lucide-react';
 
 export default function CompleteMinimalistBrutalistPortfolio() {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [activeSection, setActiveSection] = useState('hero');
     const [menuOpen, setMenuOpen] = useState(false);
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -184,12 +182,6 @@ export default function CompleteMinimalistBrutalistPortfolio() {
     ];
 
     useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
-            setMousePosition({
-                x: (e.clientX / window.innerWidth - 0.5) * 20,
-                y: (e.clientY / window.innerHeight - 0.5) * 20
-            });
-        };
 
         const handleScroll = () => {
             const sections = ['hero', 'about', 'experience', 'projects', 'skills', 'certifications', 'contact'];
@@ -211,78 +203,77 @@ export default function CompleteMinimalistBrutalistPortfolio() {
         // Set initial values
         handleResize();
 
-        window.addEventListener('mousemove', handleMouseMove);
         window.addEventListener('scroll', handleScroll);
         window.addEventListener('resize', handleResize);
 
         return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('scroll', handleScroll);
             window.removeEventListener('resize', handleResize);
         };
     }, []);
 
-    const containerRef = useGSAP((gsap, ScrollTrigger) => {
-        // Hero animations
-        gsap.set('.hero-title', { y: 100, opacity: 0 });
-        gsap.set('.hero-accent', { scaleX: 0, transformOrigin: 'left' });
-        gsap.set('.hero-subtitle', { y: 50, opacity: 0 });
-        gsap.set('.hero-description', { y: 30, opacity: 0 });
-        gsap.set('.hero-button', { y: 40, opacity: 0, scale: 0.8 });
-        gsap.set('.hero-stats', { y: 60, opacity: 0 });
+// Replace this part in your CustomHero.tsx component:
 
-        const heroTl = gsap.timeline();
-        heroTl.to('.hero-title', { y: 0, opacity: 1, duration: 1.2, ease: 'power3.out' })
-            .to('.hero-accent', { scaleX: 1, duration: 0.8, ease: 'power2.out' }, '-=0.6')
-            .to('.hero-subtitle', { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.4')
-            .to('.hero-description', { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.3')
-            .to('.hero-button', { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: 'back.out(1.7)' }, '-=0.2')
-            .to('.hero-stats', { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: 'power2.out' }, '-=0.4');
+const containerRef = useGSAP((gsap) => {
+    // Hero animations
+    gsap.set('.hero-title', { y: 100, opacity: 0 });
+    gsap.set('.hero-accent', { scaleX: 0, transformOrigin: 'left' });
+    gsap.set('.hero-subtitle', { y: 50, opacity: 0 });
+    gsap.set('.hero-description', { y: 30, opacity: 0 });
+    gsap.set('.hero-button', { y: 40, opacity: 0, scale: 0.8 });
+    gsap.set('.hero-stats', { y: 60, opacity: 0 });
 
-        // Section animations
-        gsap.utils.toArray('.section-title').forEach((title: any) => {
-            gsap.fromTo(title,
-                { y: 50, opacity: 0 },
-                {
-                    y: 0,
-                    opacity: 1,
-                    duration: 1,
-                    ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: title,
-                        start: 'top 80%'
-                    }
+    const heroTl = gsap.timeline();
+    heroTl.to('.hero-title', { y: 0, opacity: 1, duration: 1.2, ease: 'power3.out' })
+        .to('.hero-accent', { scaleX: 1, duration: 0.8, ease: 'power2.out' }, '-=0.6')
+        .to('.hero-subtitle', { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.4')
+        .to('.hero-description', { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.3')
+        .to('.hero-button', { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: 'back.out(1.7)' }, '-=0.2')
+        .to('.hero-stats', { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: 'power2.out' }, '-=0.4');
+
+    // Section animations
+    gsap.utils.toArray('.section-title').forEach((title: Element) => {
+        gsap.fromTo(title,
+            { y: 50, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: title,
+                    start: 'top 80%'
                 }
-            );
-        });
-
-        gsap.utils.toArray('.content-card').forEach((card: any, i: any) => {
-            gsap.fromTo(card,
-                { y: 60, opacity: 0 },
-                {
-                    y: 0,
-                    opacity: 1,
-                    duration: 0.8,
-                    ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: card,
-                        start: 'top 85%'
-                    },
-                    delay: i * 0.1
-                }
-            );
-        });
-
-        // Floating animations
-        gsap.to('.float-slow', {
-            y: -15, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut'
-        });
-
-        gsap.to('.float-medium', {
-            x: 10, y: -20, duration: 6, repeat: -1, yoyo: true, ease: 'sine.inOut'
-        });
+            }
+        );
     });
 
+    gsap.utils.toArray('.content-card').forEach((card: Element, i: number) => {
+        gsap.fromTo(card,
+            { y: 60, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 0.8,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%'
+                },
+                delay: i * 0.1
+            }
+        );
+    });
+
+    // Floating animations
+    gsap.to('.float-slow', {
+        y: -15, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut'
+    });
+
+    gsap.to('.float-medium', {
+        x: 10, y: -20, duration: 6, repeat: -1, yoyo: true, ease: 'sine.inOut'
+    });
+});
     const scrollToSection = (sectionId: string) => {
         const element = document.getElementById(sectionId);
         element?.scrollIntoView({ behavior: 'smooth' });
@@ -594,7 +585,7 @@ export default function CompleteMinimalistBrutalistPortfolio() {
                             { number: '10+', label: 'Projects Delivered' },
                             { number: '15+', label: 'Happy Clients' },
                             { number: '95%', label: 'Client Satisfaction' }
-                        ].map((stat, index) => (
+                        ].map((stat) => (
                             <div
                                 key={stat.label}
                                 className="content-card"
@@ -761,7 +752,7 @@ export default function CompleteMinimalistBrutalistPortfolio() {
                 </h2>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
-                    {experience.map((exp, index) => (
+                    {experience.map((exp) => (
                         <div key={exp.id} className="content-card" style={{
                             ...styles.card,
                             marginBottom: '2rem',
@@ -888,7 +879,7 @@ export default function CompleteMinimalistBrutalistPortfolio() {
                     ...styles.grid,
                     gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))'
                 }}>
-                    {projects.filter(p => p.featured).map((project, index) => (
+                    {projects.filter(p => p.featured).map((project) => (
                         <div
                             key={project.id}
                             className="content-card"
@@ -1229,7 +1220,7 @@ export default function CompleteMinimalistBrutalistPortfolio() {
                     ...styles.grid,
                     gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))'
                 }}>
-                    {certifications.map((cert, index) => (
+                    {certifications.map((cert) => (
                         <div
                             key={cert.id}
                             className="content-card"
@@ -1336,15 +1327,15 @@ export default function CompleteMinimalistBrutalistPortfolio() {
                             color: '#666666',
                             marginBottom: '3rem'
                         }}>
-                            Have a project in mind? I'm always open to discussing new opportunities
-                            and interesting challenges. Let's create something amazing together.
+                            Have a project in mind? I&apos;m always open to discussing new opportunities
+                            and interesting challenges. Let&apos;s create something amazing together.
                         </p>
 
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                             {[
-                                { icon: Mail, label: 'Email', value: 'francisco.duarry@example.com' },
-                                { icon: Phone, label: 'Phone', value: '+1 (555) 123-4567' },
-                                { icon: MapPin, label: 'Location', value: 'San Francisco, CA' },
+                                { icon: Mail, label: 'Email', value: 'pacoduarry@gmail.com' },
+                                //{ icon: Phone, label: 'Phone', value: '+1 (555) 123-4567' },
+                                { icon: MapPin, label: 'Location', value: 'Seville, Spain' },
                                 { icon: Clock, label: 'Response Time', value: 'Within 24 hours' }
                             ].map((contact, index) => (
                                 <div key={contact.label} style={{

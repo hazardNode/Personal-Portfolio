@@ -1,30 +1,52 @@
 // hooks/useGSAP.ts
 import { useEffect, useRef } from 'react';
 
-// Define types for GSAP
+// Define proper GSAP types without 'any'
+interface GSAPTimeline {
+  to: (target: string | Element | Element[], vars: Record<string, unknown>, position?: string | number) => GSAPTimeline;
+  from: (target: string | Element | Element[], vars: Record<string, unknown>, position?: string | number) => GSAPTimeline;
+  fromTo: (target: string | Element | Element[], fromVars: Record<string, unknown>, toVars: Record<string, unknown>, position?: string | number) => GSAPTimeline;
+  set: (target: string | Element | Element[], vars: Record<string, unknown>, position?: string | number) => GSAPTimeline;
+  play: () => GSAPTimeline;
+  pause: () => GSAPTimeline;
+  reverse: () => GSAPTimeline;
+  restart: () => GSAPTimeline;
+}
+
+interface GSAPUtils {
+  toArray: (target: string | Element | Element[] | NodeList) => Element[];
+}
+
 interface GSAPStatic {
-  timeline: () => any;
-  to: (target: any, vars: any) => any;
-  from: (target: any, vars: any) => any;
-  fromTo: (target: any, fromVars: any, toVars: any) => any;
-  set: (target: any, vars: any) => any;
-  registerPlugin: (...plugins: any[]) => void;
-  [key: string]: any;
+  timeline: (vars?: Record<string, unknown>) => GSAPTimeline;
+  to: (target: string | Element | Element[], vars: Record<string, unknown>) => unknown;
+  from: (target: string | Element | Element[], vars: Record<string, unknown>) => unknown;
+  fromTo: (target: string | Element | Element[], fromVars: Record<string, unknown>, toVars: Record<string, unknown>) => unknown;
+  set: (target: string | Element | Element[], vars: Record<string, unknown>) => unknown;
+  registerPlugin: (...plugins: unknown[]) => void;
+  context: (callback: () => void | (() => void), scope?: Element | null) => { revert: () => void };
+  utils: GSAPUtils;
 }
 
 interface ScrollTriggerStatic {
-  create: (vars: any) => any;
+  create: (vars: Record<string, unknown>) => unknown;
   refresh: () => void;
-  [key: string]: any;
+  batch: (targets: string | Element | Element[], vars: Record<string, unknown>) => unknown;
+}
+
+// Define window interface with GSAP properties
+interface WindowWithGSAP extends Window {
+  gsap?: GSAPStatic;
+  ScrollTrigger?: ScrollTriggerStatic;
 }
 
 // Custom hook for GSAP animations
 export function useGSAP(
-  callback: (gsap: GSAPStatic, ScrollTrigger: ScrollTriggerStatic) => void | (() => void),
-  dependencies: any[] = []
+  callback: (gsap: GSAPStatic, ScrollTrigger?: ScrollTriggerStatic) => void | (() => void),
+  dependencies: unknown[] = []
 ) {
   const containerRef = useRef<HTMLElement>(null);
-  const contextRef = useRef<any>(null);
+  const contextRef = useRef<{ revert: () => void } | null>(null);
 
   useEffect(() => {
     let cleanup: (() => void) | void;
@@ -41,27 +63,26 @@ export function useGSAP(
 
         // Create GSAP context for cleanup
         contextRef.current = gsap.context(() => {
-          // Call the animation callback with gsap and ScrollTrigger
-          cleanup = callback(gsap, ScrollTrigger);
+          // Call the animation callback with properly typed gsap and ScrollTrigger
+          cleanup = callback(gsap as GSAPStatic, ScrollTrigger as ScrollTriggerStatic);
         }, containerRef.current || undefined);
-
-        // Refresh ScrollTrigger after animations are set up
-        ScrollTrigger.refresh();
 
       } catch (error) {
         console.error('Failed to load GSAP:', error);
         
         // Fallback: Try global GSAP if dynamic import fails
-        if (typeof window !== 'undefined' && (window as any).gsap) {
-          const gsap = (window as any).gsap;
-          const ScrollTrigger = (window as any).ScrollTrigger;
+        if (typeof window !== 'undefined' && (window as WindowWithGSAP).gsap) {
+          const gsap = (window as WindowWithGSAP).gsap!;
+          const ScrollTrigger = (window as WindowWithGSAP).ScrollTrigger;
           
           if (ScrollTrigger) {
             gsap.registerPlugin(ScrollTrigger);
           }
 
           contextRef.current = gsap.context(() => {
-            cleanup = callback(gsap, ScrollTrigger || {});
+            if (ScrollTrigger) {
+              cleanup = callback(gsap, ScrollTrigger);
+            }
           }, containerRef.current || undefined);
 
           if (ScrollTrigger) {
